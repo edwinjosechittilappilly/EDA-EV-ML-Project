@@ -8,3 +8,5 @@
  - **EV Dataset:** https://www.kaggle.com/datasets/geoffnel/evs-one-electric-vehicle-dataset
    
  - **Gas Prices:** https://gasprices.aaa.com/state-gas-price-averages/
+ 
+- **Electricity Price:** : https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=table_5_06_b
