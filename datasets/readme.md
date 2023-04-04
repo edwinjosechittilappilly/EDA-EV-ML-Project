@@ -2,6 +2,7 @@
 **# add datasets here**
 
  - **EV Population Data:** https://catalog.data.gov/dataset/electric-vehicle-population-data
+ https://www.atlasevhub.com/materials/state-ev-registration-data/#data
    
 -  **EV Charging Stations :** https://www.kaggle.com/datasets/prasertk/electric-vehicle-charging-stations-in-usa
    
