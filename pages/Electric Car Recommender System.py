@@ -13,8 +13,8 @@ import numpy as np
 
 st.set_page_config(page_title="Electric Car Recommender System", page_icon="📈")
 
-st.markdown("Electric Car Recommender System")
-st.sidebar.header("Recommender System")
+# st.markdown("Electric Car Recommender System")
+st.sidebar.header("Electric Car Recommender System")
 
 
 st.title('Electric Car Recommender System')
