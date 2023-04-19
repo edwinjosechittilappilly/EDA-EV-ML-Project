@@ -8,7 +8,8 @@ import os
 
 os.listdir()
 path = "./"
-df = pd.read_pickle(path + 'combined_DataCleaned.pkl')
+# df = pd.read_pickle(path + 'combined_DataCleaned.pkl')
+df_state=pd.read_pickle(path + 'df_state.pkl')
 
 
 
@@ -26,7 +27,7 @@ height=720
 # pie chart of state counts
 #     df_bodyStle=df["BodyStyle"].value_counts().rename_axis('BodyStyle').reset_index(name='counts')
 
-df_state=df["State"].value_counts().rename_axis('State').reset_index(name='counts')
+# df_state=df["State"].value_counts().rename_axis('State').reset_index(name='counts')
 # plotly pie chart
 import plotly.express as px
 fig = px.pie(df_state, values='counts', names='State', title='State Counts')
@@ -58,4 +59,4 @@ fig.update_layout(legend=dict(font=dict(size= 20)))
 st.plotly_chart(fig)
 
 
-df_vehicleMake=df["Vehicle Make"].value_counts().rename_axis('Vehicle Make').reset_index(name='counts')
+# df_vehicleMake=df["Vehicle Make"].value_counts().rename_axis('Vehicle Make').reset_index(name='counts')
