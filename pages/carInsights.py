@@ -21,7 +21,7 @@ df.isnull().sum()
 import streamlit as st
 import streamlit as st
 
-tab1, tab2, tab3,tab4 = st.tabs(["HeatMap", "Brand", "Model","Regression Analysis"])
+tab1, tab2, tab3,tab4,tab5 = st.tabs(["HeatMap", "Brand", "Model","Regression Analysis","Price Prediction"])
 path = "./"
 df = pd.read_pickle(path + "/df_sample.pkl")
 width=1080
@@ -160,7 +160,44 @@ with tab3:
     fig.update_layout(legend=dict(font=dict(size= 20)))
     st.plotly_chart(fig)
 
+with tab4:
+    x=df[['AccelSec','Range_Km','TopSpeed_KmH','Efficiency_WhKm']]
+    y=df['PriceEuro']
 
+
+
+    st.title("Finding out the linear regression using OLS method")
+    x= sm.add_constant(x)
+    results = sm.OLS(y,x)
+# **Fitting the model and summarizing**
+    st.markdown("Fitting the model and summarizing")
+    model=results.fit()
+    st.write(model.summary())
+
+with tab5:
+    st.title("Finding out Price using  the linear regression using sklearn")
+    x=df[['AccelSec','Range_Km','TopSpeed_KmH','Efficiency_WhKm']]
+    y=df['PriceEuro']
+
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2,random_state=365)
+    from sklearn.linear_model import LinearRegression
+    lr= LinearRegression()
+    lr.fit(X_train, y_train)
+    pred = lr.predict(X_test)
+    from sklearn.metrics import r2_score
+    r2=(r2_score(y_test,pred))
+    # print(r2*100)
+    st.write("R2 score is",r2*100)
+    AccelSec = st.slider('AccelSec', float(df["AccelSec"].min()), df["AccelSec"].max())
+    Range_Km = st.slider('Range_Km', int(df["Range_Km"].min()), int(df["Range_Km"].max()))
+    Efficiency_WhKm = st.slider('Efficiency_WhKm', float(df["Efficiency_WhKm"].min()),
+                                df["Efficiency_WhKm"].max())
+    TopSpeed_KmH = st.slider('TopSpeed_KmH', int(df["TopSpeed_KmH"].min()), int(df["TopSpeed_KmH"].max()))
+
+    x_test=[[AccelSec,Range_Km,TopSpeed_KmH,Efficiency_WhKm]]
+    y_pred=lr.predict(x_test)
+    st.write("Predicted Price is",y_pred)
 
 
 # # df_new=df.copy()

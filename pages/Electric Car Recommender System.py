@@ -16,7 +16,6 @@ st.set_page_config(page_title="Electric Car Recommender System", page_icon="📈
 # st.markdown("Electric Car Recommender System")
 st.sidebar.header("Electric Car Recommender System")
 
-
 st.title('Electric Car Recommender System')
 
 st.write(
@@ -62,8 +61,8 @@ else:
     ModelCode = config["Model_dict"][Model]
 BodyStyleNames = df['BodyStyle'].unique()
 BodyStyle = st.selectbox('BodyStyle',
-                            np.append(["All"], df['BodyStyle'].unique()),
-                            index=0)
+                         np.append(["All"], df['BodyStyle'].unique()),
+                         index=0)
 
 if BodyStyle == "All":
     BodyStyleCode = -1
@@ -102,7 +101,6 @@ with cols[1]:
     else:
         PlugTypeCode = config["PlugType_dict"][PlugType]
 
-
     SegmentNames = df['Segment'].unique()
     Segment = st.selectbox('Segment',
                            np.append(["All"], df['Segment'].unique()),
@@ -120,19 +118,23 @@ with cols[1]:
 #  'FastCharge_KmH',
 #  'Seats',
 with cols[2]:
-    AccelSec = st.slider('AccelSec', 0.0, df["AccelSec"].max())
-    FastCharge_KmH = st.slider('FastCharge_KmH', 0,
+    AccelSec = st.slider('AccelSec', float(df["AccelSec"].min()),
+                         df["AccelSec"].max())
+    FastCharge_KmH = st.slider('FastCharge_KmH',
+                               int(df["FastCharge_KmH"].min()),
                                int(df["FastCharge_KmH"].max()))
 
-
 with cols[3]:
-    Range_Km = st.slider('Range_Km', 0, int(df["Range_Km"].max()))
-    Efficiency_WhKm = st.slider('Efficiency_WhKm', 0.0,
+    Range_Km = st.slider('Range_Km', int(df["Range_Km"].min()),
+                         int(df["Range_Km"].max()))
+    Efficiency_WhKm = st.slider('Efficiency_WhKm',
+                                float(df["Efficiency_WhKm"].min()),
                                 df["Efficiency_WhKm"].max())
 
 PriceEuro = st.slider('PriceEuro', 0, int(df["PriceEuro"].max()))
-Seats = st.slider('Seats', 0, int(df["Seats"].max()))
-TopSpeed_KmH = st.slider('TopSpeed_KmH', 0, int(df["TopSpeed_KmH"].max()))
+Seats = st.slider('Seats', int(df["Seats"].min()), int(df["Seats"].max()))
+TopSpeed_KmH = st.slider('TopSpeed_KmH', int(df["TopSpeed_KmH"].min()),
+                         int(df["TopSpeed_KmH"].max()))
 
 x_given = [
     AccelSec, TopSpeed_KmH, Range_Km, Efficiency_WhKm, FastCharge_KmH, Seats,
@@ -160,6 +162,17 @@ if Brand != "All":
     df_sorted = df_sorted[df_sorted["Brand"] == Brand]
 if Model != "All":
     df_sorted = df_sorted[df_sorted["Model"] == Model]
+if BodyStyle != "All":
+    df_sorted = df_sorted[df_sorted["BodyStyle"] == BodyStyle]
+if RapidCharge != "All":
+    df_sorted = df_sorted[df_sorted["RapidCharge"] == RapidCharge]
+if PowerTrain != "All":
+    df_sorted = df_sorted[df_sorted["PowerTrain"] == PowerTrain]
+if PlugType != "All":
+    df_sorted = df_sorted[df_sorted["PlugType"] == PlugType]
+if Segment != "All":
+    df_sorted = df_sorted[df_sorted["Segment"] == Segment]
+
 
 df_sorted.head(10)
 
