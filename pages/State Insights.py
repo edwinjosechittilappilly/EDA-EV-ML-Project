@@ -20,7 +20,7 @@ df_state_VehicleMake=pd.read_pickle(path + 'df_state_VehicleMake.pkl')
 df_StateMakeModel=pd.read_pickle(path + 'df_StateMakeModel.pkl')
 
 # create a streamlit tab
-tab1, tab2, tab3,tab4,tab5 = st.tabs(["Vehicle Population", " Brand and Model", "","",""])
+tab1, tab2 = st.tabs(["Vehicle Population", " Brand and Model"])
 
 
 # df.describe()
