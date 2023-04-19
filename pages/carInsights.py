@@ -25,7 +25,7 @@ tab1, tab2, tab3,tab4,tab5 = st.tabs(["HeatMap", "Brand", "Model","Regression An
 path = "./"
 df = pd.read_pickle(path + "/df_sample.pkl")
 width=1080
-height=500,
+height=720
 with tab1:
     # path = "./"
     # df = pd.read_pickle(path + "/df_sample.pkl")
@@ -37,8 +37,7 @@ with tab1:
     fig = px.imshow(df_new.corr().round(2), text_auto=True, aspect="auto")
     fig.update_layout(
         autosize=True,
-        width=1080,
-        height=1080,
+        width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -52,7 +51,7 @@ with tab2:
     fig = px.bar(new_df, x="Brand",y="counts",title="Frequency of models for Each Brand",text_auto=True)
 
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -63,7 +62,7 @@ with tab2:
     fig = px.bar(df_grp, x="Brand",y="TopSpeed_KmH",title='Top Speed achieved by a brand',text_auto=True)
 
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -73,7 +72,7 @@ with tab2:
     df_grp=df_range.groupby('Brand',as_index=False).max().sort_values("Range_Km", axis=0, ascending=False)
     fig = px.bar(df_grp, x="Brand",y="Range_Km",title='Maximum Range achieved by a brand',text_auto=True)
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -83,7 +82,7 @@ with tab2:
     df_grp=df_Efficiency_WhKm.groupby('Brand',as_index=False).max().sort_values("Efficiency_WhKm", axis=0, ascending=False)
     fig = px.bar(df_grp, x="Brand",y="Efficiency_WhKm",title='Efficiency achieved by a brand',text_auto=True)
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -93,7 +92,7 @@ with tab2:
     df_grp=df_seat.groupby('Brand',as_index=False).max().sort_values("Seats", axis=0, ascending=False)
     fig = px.bar(df_grp, x="Brand",y="Seats",title='Maximum Seats achieved by a brand',text_auto=True)
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -103,7 +102,7 @@ with tab2:
     df_grp=df_price.groupby('Brand',as_index=False).max().sort_values("PriceEuro", axis=0, ascending=False)
     fig = px.bar(df_grp, x="Brand",y="PriceEuro",title='Maximum Price achieved by a brand in Euro',text_auto=True)
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -116,7 +115,7 @@ with tab3:
     fig = px.pie(df_plug, values='counts', names='PlugType', title='Plug Type')
     fig.update_traces(pull=[0.1, 0, 0, 0])
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -129,7 +128,7 @@ with tab3:
     fig =px.pie(df_bodyStle, values='counts', names='BodyStyle', title='Body Style')
     fig.update_traces(pull=[0.1, 0, 0, 0])
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -142,7 +141,7 @@ with tab3:
     fig =px.pie(df_segment, values='counts', names='Segment', title='Segment')
     fig.update_traces(pull=[0.1, 0, 0, 0])
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,  # Set the font size here
         ))
@@ -154,7 +153,7 @@ with tab3:
     fig =px.pie(df_seats, values='counts', names='Seats', title='Seats')
     fig.update_traces(pull=[0.1, 0, 0, 0])
     fig.update_layout(
-        autosize=False,width=width,
+        autosize=False,width=width,height=height,
         font=dict(
             size=18,))  # Set the font size here
     fig.update_layout(legend=dict(font=dict(size= 20)))
