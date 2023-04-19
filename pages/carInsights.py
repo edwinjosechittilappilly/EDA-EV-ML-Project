@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
-# import statsmodels.api as sm
+import statsmodels.api as sm
 
 import os
 
@@ -21,7 +21,7 @@ df.isnull().sum()
 import streamlit as st
 import streamlit as st
 
-tab1, tab2, tab3 = st.tabs(["HeatMap", "Brand", "Model"])
+tab1, tab2, tab3,tab4 = st.tabs(["HeatMap", "Brand", "Model","Regression Analysis"])
 path = "./"
 df = pd.read_pickle(path + "/df_sample.pkl")
 width=1080
@@ -108,6 +108,59 @@ with tab2:
             size=18,  # Set the font size here
         ))
     st.plotly_chart(fig)
+
+with tab3:
+    df_plug=df["PlugType"].value_counts().rename_axis('PlugType').reset_index(name='counts')
+    # plotly pie chart explode
+    # fig=/
+    fig = px.pie(df_plug, values='counts', names='PlugType', title='Plug Type')
+    fig.update_traces(pull=[0.1, 0, 0, 0])
+    fig.update_layout(
+        autosize=False,width=width,
+        font=dict(
+            size=18,  # Set the font size here
+        ))
+    fig.update_layout(legend=dict(font=dict(size= 20)))
+    st.plotly_chart(fig)
+
+
+    df_bodyStle=df["BodyStyle"].value_counts().rename_axis('BodyStyle').reset_index(name='counts')
+    # plotly pie chart explode
+    fig =px.pie(df_bodyStle, values='counts', names='BodyStyle', title='Body Style')
+    fig.update_traces(pull=[0.1, 0, 0, 0])
+    fig.update_layout(
+        autosize=False,width=width,
+        font=dict(
+            size=18,  # Set the font size here
+        ))
+    fig.update_layout(legend=dict(font=dict(size= 20)))
+    st.plotly_chart(fig)
+
+
+    df_segment=df["Segment"].value_counts().rename_axis('Segment').reset_index(name='counts')
+    # plotly pie chart explode
+    fig =px.pie(df_segment, values='counts', names='Segment', title='Segment')
+    fig.update_traces(pull=[0.1, 0, 0, 0])
+    fig.update_layout(
+        autosize=False,width=width,
+        font=dict(
+            size=18,  # Set the font size here
+        ))
+    fig.update_layout(legend=dict(font=dict(size= 20)))
+    st.plotly_chart(fig)
+
+    df_seats=df["Seats"].value_counts().rename_axis('Seats').reset_index(name='counts')
+    # plotly pie chart explode
+    fig =px.pie(df_seats, values='counts', names='Seats', title='Seats')
+    fig.update_traces(pull=[0.1, 0, 0, 0])
+    fig.update_layout(
+        autosize=False,width=width,
+        font=dict(
+            size=18,))  # Set the font size here
+    fig.update_layout(legend=dict(font=dict(size= 20)))
+    st.plotly_chart(fig)
+
+
 
 
 # # df_new=df.copy()
