@@ -17,7 +17,7 @@ os.listdir()
 path = "./"
 df = pd.read_csv(path + "FullData.csv")
 
-st.write(df.head())
+
 
 StateVsLiving, StateVsEV, GasePrice, Combined = st.tabs(
     ["StateVsLiving", "StateVsEV", "GasPrice", "Combined"])
@@ -101,3 +101,8 @@ with Combined:
     # Change the bar mode
     fig.update_layout(barmode='group')
     st.plotly_chart(fig)
+
+
+
+st.title("Data")
+st.write(df)
